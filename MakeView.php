@@ -51,7 +51,10 @@ class MakeView extends Command
         $body .= "\r\n@push('loadjs')";
         $body .= "\r\n";
         $body .= "\r\n@endpush";
-
+        
+        if(!is_dir($path)){
+          return $this->error('A pasta especificada não existe');
+        }
         $create = fopen($path.$fileName.".blade.php", 'w');
         fwrite($create, $body);
         fclose($create);
